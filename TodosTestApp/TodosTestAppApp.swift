@@ -13,8 +13,13 @@ struct TodosTestAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            
+            let context = persistenceController.container.viewContext
+            let dateHolder = ContextHandler(context)
+            
+            TodoListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(dateHolder)
         }
     }
 }
